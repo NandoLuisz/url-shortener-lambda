@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Main implements RequestHandler<Map<String, Object>, Map<String, String>> {
+public class CreateUrlHandler implements RequestHandler<Map<String, Object>, Map<String, String>> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final S3Client s3Client = S3Client.builder().build();
@@ -35,7 +35,6 @@ public class Main implements RequestHandler<Map<String, Object>, Map<String, Str
         UrlData urlData = new UrlData(originalUrl, Long.parseLong(expirationTime));
 
         try{
-
             String urlDataJson = objectMapper.writeValueAsString(urlData);
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket("url-shortener-storage-nfl")
